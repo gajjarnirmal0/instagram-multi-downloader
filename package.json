@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-dev": "(cd client && npm install) | npm install",
+    "start": "./node_modules/.bin/nodemon index.js",
+    "server": "./node_modules/.bin/nodemon index.js",
+    "client": "npm start --prefix client",
+    "client-build": "cd client && npm run build",
+    "client-production": "./node_modules/.bin/serve -l 3000 -s client/build",
+    "dev-concurrently": "./node_modules/.bin/npm-run-all --parallel \"npm run server\" \"npm run client\"",
+    "dev": "./node_modules/.bin/npm-run-all --parallel client server",
+    "production": "./node_modules/.bin/npm-run-all --parallel client-production server",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "test-client": "cd client && yarn test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors-anywhere": "^0.4.3",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "serve": "^11.3.2"
+  }
+}
